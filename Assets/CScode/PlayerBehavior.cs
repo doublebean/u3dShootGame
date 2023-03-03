@@ -19,12 +19,15 @@ public class PlayerBehavior : MonoBehaviour
 
     private Rigidbody _rb;
     private CapsuleCollider _col;
+    private GameBehavior _gameManager;//得到的游戏管理器
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
 
         _col = GetComponent<CapsuleCollider>();
+
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
     }
 
     void Update()
@@ -69,6 +72,14 @@ public class PlayerBehavior : MonoBehaviour
             Debug.Log("open fire!");
             flagBullet = false ;
 
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if( collision.gameObject.name == "Enemy" )
+        {
+            _gameManager.Lives -= 1;
         }
     }
 

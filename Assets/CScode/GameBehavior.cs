@@ -8,6 +8,7 @@ public class GameBehavior : MonoBehaviour
     public int maxItems = 4;
 
     public bool showWinScreen = false;
+    public bool showLossScreen = false;
 
     private int _itemsCollected = 0;
     private int _playerLives = 3;
@@ -39,10 +40,33 @@ public class GameBehavior : MonoBehaviour
     {
         get { return _playerLives; }
 
-        set { _playerLives = value;
+        set
+        {
+            _playerLives = value;
             Debug.LogFormat("HP : {0}", _playerLives);
+
+
+            if (_playerLives <= 0)
+            {
+                labelText = "You want another life with that?";
+                showLossScreen = true;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                labelText = "ouch... that's got hurt";
+            }
         }
+
     }
+
+
+
+
+
+
+
+    
 
     void OnGUI()
     {
@@ -54,9 +78,27 @@ public class GameBehavior : MonoBehaviour
         {
             if(GUI.Button(new Rect(Screen.width/2 - 100 , Screen.height/2 -50 , 200 , 100),"you win!!"))
                 {
-                SceneManager.LoadScene(0);
-                Time.timeScale = 1f;
+                //SceneManager.LoadScene(0);
+                //Time.timeScale = 1f;
+                RestarLevel();
+                
             }
         }
+
+        if(showLossScreen)
+        {
+            if(GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "you Lose!!"))
+            {
+                //SceneManager.LoadScene(0);
+                //Time.timeScale = 1.0f;
+                RestarLevel();
+            }
+        }
+    }
+
+    void RestarLevel()//重构在胜利和失败条件里的同样代码
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
     }
 }

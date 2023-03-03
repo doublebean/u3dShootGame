@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    public Vector3 camOffset = new Vector3( 0 ,  1.2f , -2.6f );//相机和玩家之间的偏移量
+    public Vector3 camOffset = new Vector3( 0 ,  2.4f , -5.2f );//相机和玩家之间的偏移量
 
     private Transform target;//保存player的变化信息
 
