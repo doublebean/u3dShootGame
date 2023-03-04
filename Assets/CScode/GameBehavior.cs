@@ -80,7 +80,7 @@ public class GameBehavior : MonoBehaviour
                 {
                 //SceneManager.LoadScene(0);
                 //Time.timeScale = 1f;
-                RestarLevel();
+                Utilities.RestarLevel();
                 
             }
         }
@@ -91,14 +91,10 @@ public class GameBehavior : MonoBehaviour
             {
                 //SceneManager.LoadScene(0);
                 //Time.timeScale = 1.0f;
-                RestarLevel();
+                Utilities.RestarLevel(0);
             }
         }
     }
 
-    void RestarLevel()//重构在胜利和失败条件里的同样代码
-    {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 1.0f;
-    }
+    
 }

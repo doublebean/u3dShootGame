@@ -5544,6 +5544,7 @@ MonoBehaviour:
   labelText: Collect all 4items and win your freedom !
   maxItems: 1
   showWinScreen: 0
+  showLossScreen: 0
 --- !u!4 &719440029
 Transform:
   m_ObjectHideFlags: 0
@@ -6846,7 +6847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872372467264347653, guid: bbe3403c6efff83479f3a3d681358652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.53
+      value: -15.8
       objectReference: {fileID: 0}
     - target: {fileID: 872372467264347653, guid: bbe3403c6efff83479f3a3d681358652, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6854,7 +6855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872372467264347653, guid: bbe3403c6efff83479f3a3d681358652, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.11
+      value: 8.04
       objectReference: {fileID: 0}
     - target: {fileID: 872372467264347653, guid: bbe3403c6efff83479f3a3d681358652, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6911,15 +6912,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1507173326245129223, guid: fcd86f2792fdd7546b29c6eb6de8f9eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.57
+      value: -17.65
       objectReference: {fileID: 0}
     - target: {fileID: 1507173326245129223, guid: fcd86f2792fdd7546b29c6eb6de8f9eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.25
+      value: 13.21
       objectReference: {fileID: 0}
     - target: {fileID: 1507173326245129223, guid: fcd86f2792fdd7546b29c6eb6de8f9eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.85
+      value: 5.17
       objectReference: {fileID: 0}
     - target: {fileID: 1507173326245129223, guid: fcd86f2792fdd7546b29c6eb6de8f9eb, type: 3}
       propertyPath: m_LocalRotation.w
