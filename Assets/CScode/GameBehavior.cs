@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameBehavior : MonoBehaviour
+using CustomExtensions;
+
+public class GameBehavior : MonoBehaviour, IManager
 {
     public string labelText = "Collect all 4items and win your freedom !";
     public int maxItems = 4;
@@ -12,6 +14,25 @@ public class GameBehavior : MonoBehaviour
 
     private int _itemsCollected = 0;
     private int _playerLives = 3;
+    private string _state;
+
+    public string State
+    {
+        get { return _state; }
+        set { _state = value; } 
+    }
+
+    void Start()
+    {
+        Initialize();
+    }
+    public void Initialize()//接口所需要实现的功能
+    {
+        _state = "Manager initialized";
+
+        _state.FancyDebug();
+        Debug.Log(_state);
+    }
 
     public int Items//声明收集数量的公共变量
     {
