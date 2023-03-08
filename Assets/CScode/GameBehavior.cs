@@ -25,6 +25,11 @@ public class GameBehavior : MonoBehaviour, IManager
     void Start()
     {
         Initialize();
+
+        InventoryList<string> inventoryList = new InventoryList<string> ();
+        inventoryList.SetItem("positon");
+        Debug.Log(inventoryList.item);
+
     }
     public void Initialize()//接口所需要实现的功能
     {
