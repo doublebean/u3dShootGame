@@ -8,6 +8,8 @@ public class GameBehavior : MonoBehaviour, IManager
 {
     public string labelText = "Collect all 4items and win your freedom !";
     public int maxItems = 4;
+    public delegate void DebugDelegate(string newText);//声明委托
+    public DebugDelegate debug = Print;//分配给委托方法
 
     public bool showWinScreen = false;
     public bool showLossScreen = false;
@@ -19,16 +21,24 @@ public class GameBehavior : MonoBehaviour, IManager
     public string State
     {
         get { return _state; }
-        set { _state = value; } 
+        set { _state = value; }
     }
 
     void Start()
     {
         Initialize();
 
-        InventoryList<string> inventoryList = new InventoryList<string> ();
+        InventoryList<string> inventoryList = new InventoryList<string>();
+
+        // InventoryList<int> addInventoryList = new InventoryList<int> ();//
+
         inventoryList.SetItem("positon");
+
+        // addInventoryList.SetItem(999); //测试泛型的使用
         Debug.Log(inventoryList.item);
+        // Debug.Log(addInventoryList.item);//
+
+
 
     }
     public void Initialize()//接口所需要实现的功能
@@ -37,17 +47,31 @@ public class GameBehavior : MonoBehaviour, IManager
 
         _state.FancyDebug();
         Debug.Log(_state);
+
+        debug(_state);//通过委托调用
+
+        LogWithDelegate(debug);
+
+        GameObject player = GameObject.Find("Player");
+        PlayerBehavior playerBehavior = player.GetComponent<PlayerBehavior>();
+        playerBehavior.playerJump += HandlePlayerJump;
+
+    }
+
+    public void HandlePlayerJump()
+    {
+        debug("player has jumped!!!");
     }
 
     public int Items//声明收集数量的公共变量
     {
         get { return _itemsCollected; }
 
-        set { 
+        set {
             _itemsCollected = value;
             Debug.LogFormat("Items : {0}", _itemsCollected);
 
-            if(_itemsCollected >= maxItems)
+            if (_itemsCollected >= maxItems)
             {
                 showWinScreen = true;
                 labelText = "You've found all the 4 items!";
@@ -86,9 +110,15 @@ public class GameBehavior : MonoBehaviour, IManager
 
     }
 
+    public static void Print(string newText)
+    {
+        Debug.Log(newText);
+    }
 
-
-
+    public void LogWithDelegate(DebugDelegate @delegate)//这里的delegate是C#的关键字必须要加上@才行
+    {
+        @delegate("Delegating the debug task...");
+    }
 
 
 
@@ -117,7 +147,25 @@ public class GameBehavior : MonoBehaviour, IManager
             {
                 //SceneManager.LoadScene(0);
                 //Time.timeScale = 1.0f;
-                Utilities.RestarLevel(0);
+
+                try
+                {
+                    Utilities.RestarLevel(-1);
+                    debug("Level restarted successfully!!!");
+
+                }
+                catch(System.ArgumentException e)//当出现异常就调用默认的场景索引
+                {
+                    Utilities.RestarLevel(0);
+                    debug("Reverting to scene 0: " + e.ToString());
+                }
+                finally
+                {
+                    debug("REstart handled....");
+                }
+
+
+                
             }
         }
     }

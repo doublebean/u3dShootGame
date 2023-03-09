@@ -12,6 +12,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public GameObject bullet;//子弹
     public LayerMask groundLayer;
+    public delegate void JumpingEvent(); //声明跳跃事件的委托
+    public event JumpingEvent playerJump; //声明跳跃事件
 
     private float vInput;
     private float hInput;
@@ -39,6 +41,8 @@ public class PlayerBehavior : MonoBehaviour
         if( IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            
+            playerJump(); //
 
         }
 
@@ -49,6 +53,8 @@ public class PlayerBehavior : MonoBehaviour
         //this.transform.Translate(Vector3.forward * vInput * Time.deltaTime);
 
         //this.transform.Rotate(Vector3.up * hInput * Time.deltaTime);
+
+        
     }
 
     void FixedUpdate()

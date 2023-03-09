@@ -20,6 +20,12 @@ public static class Utilities
 
     public static bool RestarLevel(int sceneIndex)
     {
+        
+        if(sceneIndex < 0)//Å×³öÒì³£
+        {
+            throw new System.ArgumentOutOfRangeException("Scene index can not be negative!!!");
+        }
+        
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1.0f;
 
